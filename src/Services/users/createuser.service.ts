@@ -2,7 +2,7 @@ import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/user.entity";
 import { IUserResponse } from "../../interfaces/users";
-import { ReturnCreateUserSchema } from "../../schemas/users.serializers";
+import { ReturnCreateUserSchema } from "../../schemas/user.serializers";
 
 const createUserService = async (userdata: IUserResponse): Promise<IUserResponse> => {
     const userRepository: Repository<User> = AppDataSource.getRepository(User)

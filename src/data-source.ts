@@ -1,12 +1,11 @@
 import 'dotenv/config';
-import path from 'path';
 import 'reflect-metadata';
 import { DataSource, DataSourceOptions } from 'typeorm';
+import { User } from './entities/user.entity';
+import { initial1679624971699 } from './migrations/1679624971699-initial';
 
 const dataSourceConfig = (): DataSourceOptions => {
-    const entitiesPath: string = path.join(__dirname, './entities/**.{ts,js}');
-    const migrationPath: string = path.join(__dirname, './migrations/**.{ts,js}');
-
+  
     const dbUrl: string | undefined = process.env.DATABASE_URL;
 
     if (!dbUrl) throw new Error("Missing env var: 'DATABASE_URL' ");
@@ -18,7 +17,7 @@ const dataSourceConfig = (): DataSourceOptions => {
             type: 'sqlite',
             database: ':memory:',
             synchronize: true,
-            entities: [entitiesPath],
+            entities: [User],
         };
     }
 
@@ -27,8 +26,8 @@ const dataSourceConfig = (): DataSourceOptions => {
         url: dbUrl,
         synchronize: false,
         logging: true,
-        entities: [entitiesPath],
-        migrations: [migrationPath],
+        entities: [User],
+        migrations: [initial1679624971699],
     };
 };
 
