@@ -12,15 +12,11 @@ const loginService = async ({
     const userRepository = AppDataSource.getRepository(User);
 
     const user = await userRepository.findOneBy({
-    email,
+        email: email
     });
 
     if (!user) {
         throw new AppError("User or password invalid", 403);
-    }
-
-    if (user.isActive == false) {
-        throw new AppError("User was deleted", 400);
     }
 
     const passwordMatch = await compare(password, user.password);
