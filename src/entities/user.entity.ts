@@ -4,6 +4,7 @@ import {
   BeforeUpdate,
   Column,
   CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -28,19 +29,19 @@ class User {
 
   @Column({ length: 11 })
   phone: string;
-
-  @Column({ default: true })
-  isActive: boolean;
-
+  
   @Column({ default: true })
   isAdm: boolean;
-
+  
   @CreateDateColumn()
   createdAt: Date;
-
+  
   @UpdateDateColumn()
   updatedAt: Date;
 
+  @DeleteDateColumn()
+  deletedAt: Date;
+  
   @BeforeUpdate()
   @BeforeInsert()
   hashPassword() {

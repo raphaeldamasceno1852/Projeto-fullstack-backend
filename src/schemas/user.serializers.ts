@@ -17,10 +17,11 @@ export const ReturnCreateUserSchema: SchemaOf<IUserResponse> = yup.object().shap
     lastName: yup.string(),
     email: yup.string().email(),
     phone: yup.string(),
-    isActive: yup.boolean(),
     isAdm: yup.boolean(),
     createdAt: yup.date(),
     updatedAt: yup.date(),
+    deletedAt: yup.date().nullable(true),
 })
 
 export const ListUsersSchema: SchemaOf<IUserResponse[]> = yup.array(ReturnCreateUserSchema)
+

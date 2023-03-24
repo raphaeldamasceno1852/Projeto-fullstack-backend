@@ -12,10 +12,10 @@ export interface IUserResponse {
     lastName: string
     email: string
     phone: string
-    isActive: boolean
     isAdm: boolean
     createdAt: Date
     updatedAt: Date
+    deletedAt?: Date
 }
 
 export interface IUpdateUser {
