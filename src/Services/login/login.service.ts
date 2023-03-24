@@ -19,6 +19,10 @@ const loginService = async ({
         throw new AppError("User or password invalid", 403);
     }
 
+    if (user.createdAt != null) {
+        throw new AppError("User was deleted", 404);
+    }
+
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
