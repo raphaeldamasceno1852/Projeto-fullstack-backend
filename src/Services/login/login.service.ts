@@ -11,16 +11,9 @@ const loginService = async ({
 }: IUserLogin): Promise<string> => {
     const userRepository = AppDataSource.getRepository(User);
 
-    console.log(email);
-    console.log(password);
-
-
     const user = await userRepository.findOneBy({
-        email: email,
+    email,
     });
-
-    console.log(user);
-
 
     if (!user) {
         throw new AppError("User or password invalid", 403);

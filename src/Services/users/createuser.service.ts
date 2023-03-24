@@ -8,7 +8,6 @@ const createUserService = async (userdata: IUserResponse): Promise<IUserResponse
     const userRepository: Repository<User> = AppDataSource.getRepository(User)
 
     const user = userRepository.create(userdata)
-    console.log(user);
 
     await userRepository.save(user)
 
