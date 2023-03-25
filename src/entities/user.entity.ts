@@ -8,9 +8,9 @@ import {
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
+  UpdateDateColumn
 } from "typeorm";
-import { Client } from "./client";
+import { Client } from "./client.entity";
 
 @Entity("users")
 class User {
@@ -31,19 +31,19 @@ class User {
 
   @Column({ length: 11 })
   phone: string;
-  
+
   @Column({ default: true })
   isAdm: boolean;
-  
+
   @CreateDateColumn()
   createdAt: Date;
-  
+
   @UpdateDateColumn()
   updatedAt: Date;
 
   @DeleteDateColumn()
   deletedAt: Date;
-  
+
   @OneToMany(() => Client, client => client.user)
   clients: Client[]
 
@@ -55,3 +55,4 @@ class User {
 }
 
 export { User };
+

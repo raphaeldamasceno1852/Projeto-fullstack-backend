@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import 'reflect-metadata';
 import { DataSource, DataSourceOptions } from 'typeorm';
-import { Client } from './entities/client';
+import { Client } from './entities/client.entity';
 import { User } from './entities/user.entity';
 import { InitialMigration1679664273283 } from './migrations/1679664273283-InitialMigration';
 import { CreateClientsTable1679779758551 } from './migrations/1679779758551-CreateClientsTable';

@@ -6,13 +6,13 @@ class Client {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column()
+    @Column({length: 120})
     fullname: string;
 
-    @Column()
+    @Column({length: 50})
     email: string;
 
-    @Column()
+    @Column({length: 11})
     telefone: string;
 
     @CreateDateColumn()
