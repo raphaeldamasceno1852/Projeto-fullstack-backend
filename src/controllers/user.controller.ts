@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { IUserResponse } from "../interfaces/users";
 import createUserService from "../Services/users/createuser.service";
 import deleteUserService from "../Services/users/deleteUser.service";
+import listDeletedUsersService from "../Services/users/listUsers.service";
 import listUsersService from "../Services/users/listUsers.service";
 import retrieveUserService from "../Services/users/retrieveUser.service";
 import updateUserService from "../Services/users/updateUser.service";
@@ -15,6 +16,11 @@ const createUserController = async (req: Request, res: Response) => {
 const listUsersController = async (req: Request, res: Response) => {
     const listUsers = await listUsersService()
     return res.status(200).send(listUsers)
+}
+
+const listDeletedUsersController = async (req: Request, res: Response) => {
+    const listDeletedUsers = await listDeletedUsersService()
+    return res.status(200).send(listDeletedUsers)
 }
 
 const retrieveUserController = async (req: Request, res: Response) => {
@@ -36,4 +42,4 @@ const deleteUserController = async (req: Request, res: Response) => {
     return res.status(204).send({})
 }
 
-export { createUserController, listUsersController, retrieveUserController, updateUserController, deleteUserController };
+export { createUserController, listUsersController, listDeletedUsersController, retrieveUserController, updateUserController, deleteUserController };
