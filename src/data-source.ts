@@ -1,8 +1,10 @@
 import 'dotenv/config';
 import 'reflect-metadata';
 import { DataSource, DataSourceOptions } from 'typeorm';
+import { Client } from './entities/client';
 import { User } from './entities/user.entity';
 import { InitialMigration1679664273283 } from './migrations/1679664273283-InitialMigration';
+import { CreateClientsTable1679779758551 } from './migrations/1679779758551-CreateClientsTable';
 
 const dataSourceConfig = (): DataSourceOptions => {
 
@@ -17,7 +19,7 @@ const dataSourceConfig = (): DataSourceOptions => {
             type: 'sqlite',
             database: ':memory:',
             synchronize: true,
-            entities: [User],
+            entities: [User, Client],
         };
     }
 
@@ -26,8 +28,8 @@ const dataSourceConfig = (): DataSourceOptions => {
         url: dbUrl,
         synchronize: false,
         logging: true,
-        entities: [User],
-        migrations: [InitialMigration1679664273283],
+        entities: [User, Client],
+        migrations: [InitialMigration1679664273283, CreateClientsTable1679779758551],
     };
 };
 

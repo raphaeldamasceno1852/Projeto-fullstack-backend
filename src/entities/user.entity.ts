@@ -6,9 +6,11 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { Client } from "./client";
 
 @Entity("users")
 class User {
@@ -42,6 +44,9 @@ class User {
   @DeleteDateColumn()
   deletedAt: Date;
   
+  @OneToMany(() => Client, client => client.user)
+  clients: Client[]
+
   @BeforeUpdate()
   @BeforeInsert()
   hashPassword() {
