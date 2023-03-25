@@ -11,8 +11,8 @@ const usersRouter = Router();
 
 usersRouter.post("", userExistsMiddleware, validateDataMiddleware(CreateUserSchema), createUserController);
 usersRouter.get("", authMiddleware, ensureIsAdminMiddleware, listUsersController)
-usersRouter.get("/:id", authMiddleware, ensureIsAdminOrOwnerMiddleware, retrieveUserController)
-usersRouter.patch("/:id", authMiddleware, ensureIsAdminOrOwnerMiddleware, updateUserController)
-usersRouter.delete("/:id", authMiddleware, ensureIsAdminOrOwnerMiddleware, deleteUserController)
+usersRouter.get("/:id", ensureIsAdminMiddleware, authMiddleware, ensureIsAdminOrOwnerMiddleware, retrieveUserController)
+usersRouter.patch("/:id", ensureIsAdminMiddleware, authMiddleware, ensureIsAdminOrOwnerMiddleware, updateUserController)
+usersRouter.delete("/:id", ensureIsAdminMiddleware, authMiddleware, ensureIsAdminOrOwnerMiddleware, deleteUserController)
 
 export default usersRouter;
