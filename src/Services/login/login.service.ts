@@ -19,7 +19,7 @@ const loginService = async ({
         throw new AppError("User or password invalid", 403);
     }
 
-    if (user.createdAt != null) {
+    if (user.deletedAt != null) {
         throw new AppError("User was deleted", 404);
     }
 

@@ -16,11 +16,6 @@ const deleteUserService = async (userId: string): Promise<void> => {
         throw new AppError('User not found', 404)
     }
 
-    if (user.deletedAt == null) {
-
-        throw new AppError('User already inative', 400)
-    }
-
     await userRepository.softRemove(user!)
 
 }
