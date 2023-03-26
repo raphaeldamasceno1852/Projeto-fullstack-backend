@@ -16,7 +16,7 @@ const ReturnClientSchema: SchemaOf<IClientResponse> = yup.object().shape({
     registeredAt: yup.date(),
     updatedAt: yup.date(),
     deletedAt: yup.date().nullable(true),
-    user: yup.object()
+    userId: yup.string()
 })
 
 const ListClientsSchema: SchemaOf<IClientResponse[]> = yup.array(ReturnClientSchema)

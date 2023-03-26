@@ -1,12 +1,10 @@
-import { IUserResponse } from "../users"
-
 export interface IClientRequest {
     fullname: string
     email: string
     telefone: string
 }
 
-export interface IClientResponse  {
+export interface IClientResponse {
     id: string
     fullname: string
     email: string
@@ -14,6 +12,6 @@ export interface IClientResponse  {
     registeredAt: Date
     updatedAt: Date
     deletedAt: Date
-    user: IUserResponse
+    userId: string
 }
 
