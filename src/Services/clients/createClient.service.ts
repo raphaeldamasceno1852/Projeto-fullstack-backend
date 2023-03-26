@@ -5,7 +5,8 @@ import { User } from "../../entities/user.entity";
 import { IClientResponse } from "../../interfaces/clients";
 import { ReturnClientSchema } from "../../schemas/client.schema";
 
-const createClientService = async (userId: string, ClientData: IClientResponse): Promise<IClientResponse> => {
+const createClientService = async (userId: string, clientData: IClientResponse): Promise<IClientResponse> => {
+    
     const userRepository: Repository<User> = AppDataSource.getRepository(User)
     const clientRepository: Repository<Client> = AppDataSource.getRepository(Client)
 
@@ -13,10 +14,7 @@ const createClientService = async (userId: string, ClientData: IClientResponse):
         id: userId
     })
 
-    const client: Client = clientRepository.create({
-        ...ClientData,
-        ...user!
-    })
+    const client: Client | null = clientRepository.create(clientData)
 
     await clientRepository.save(client)
 
