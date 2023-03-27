@@ -6,8 +6,8 @@ const ensureIsAdminOrOwnerMiddleware = async (req: Request, res: Response, next:
     if (req.body.user.isAdm || req.params.id == req.body.user.id) {
         return next();
     }
+    
     throw new AppError("You dont have permission", 401);
-    return next()
 };
 
 export default ensureIsAdminOrOwnerMiddleware

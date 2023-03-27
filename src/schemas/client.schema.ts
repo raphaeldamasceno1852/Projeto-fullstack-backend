@@ -21,6 +21,12 @@ const ReturnClientSchema: SchemaOf<IClientResponse> = yup.object().shape({
 
 const ListClientsSchema: SchemaOf<IClientResponse[]> = yup.array(ReturnClientSchema)
 
+const UpdateClientSchema: SchemaOf<IClientRequest> = yup.object().shape({
+    fullname: yup.string(),
+    email: yup.string().email(),
+    telefone: yup.string().required()
+})
 
-export { CreateClientSchema, ReturnClientSchema, ListClientsSchema };
+
+export { CreateClientSchema, ReturnClientSchema, ListClientsSchema, UpdateClientSchema };
 

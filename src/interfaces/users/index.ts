@@ -1,3 +1,5 @@
+import { IClientResponse } from "../clients"
+
 export interface IUserRequest {
     firstName: string
     lastName: string
@@ -24,4 +26,17 @@ export interface IUpdateUser {
     email?: string
     password?: string
     phone?: string
+}
+
+export interface IUserWithClients {
+    id: string
+    firstName: string
+    lastName: string
+    email: string
+    phone: string
+    isAdm: boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt?: Date
+    clients: IClientResponse[]
 }

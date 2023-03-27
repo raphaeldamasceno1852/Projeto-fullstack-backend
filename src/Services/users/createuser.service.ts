@@ -13,7 +13,6 @@ const createUserService = async (userdata: IUserResponse): Promise<IUserResponse
 
     const userValidated = await ReturnCreateUserSchema.validate(user, {
         stripUnknown: true,
-        abortEarly: false
     })
 
     return userValidated
