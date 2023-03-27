@@ -15,3 +15,8 @@ export interface IClientResponse {
     userId: string
 }
 
+export interface IClientUpdate {
+    fullname?: string
+    email?: string
+    telefone?: string
+}
