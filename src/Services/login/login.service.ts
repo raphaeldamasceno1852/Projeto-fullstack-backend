@@ -16,7 +16,7 @@ const loginService = async ({
     });
 
     if (!user) {
-        throw new AppError("User or password invalid", 403);
+        throw new AppError("Invalid email or password", 403);
     }
 
     if (user.deletedAt != null) {

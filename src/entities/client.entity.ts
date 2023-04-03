@@ -21,9 +21,6 @@ class Client {
     @UpdateDateColumn()
     updatedAt: Date;
 
-    @DeleteDateColumn()
-    deletedAt: Date;
-
     @ManyToOne(() => User, user => user.clients)
     user: User
 }
