@@ -8,7 +8,7 @@ const clientsRouter = Router()
 
 clientsRouter.post("", ensureClientExistsMiddleware, authMiddleware, createClientsController)
 clientsRouter.get("", authMiddleware, listClientsController)
-clientsRouter.get("/users/:id", authMiddleware, ensureIsAdminOrOwnerMiddleware, retrieveClientsByIdController)
+clientsRouter.get("/users/:id", authMiddleware, retrieveClientsByIdController)
 clientsRouter.patch("/:client_id", authMiddleware, updateClientController)
 clientsRouter.delete("/:client_id", authMiddleware, deleteClientController)
 
