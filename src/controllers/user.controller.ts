@@ -1,11 +1,10 @@
 import { Request, Response } from "express";
-import { IUpdateUser, IUserResponse } from "../interfaces/users";
 import createUserService from "../Services/users/createuser.service";
 import deleteUserService from "../Services/users/deleteUser.service";
-import listDeletedUsersService from "../Services/users/listUsers.service";
-import listUsersService from "../Services/users/listUsers.service";
+import listUserService from "../Services/users/listUser.service";
 import retrieveUserService from "../Services/users/retrieveUser.service";
 import updateUserService from "../Services/users/updateUser.service";
+import { IUpdateUser, IUserResponse } from "../interfaces/users";
 
 const createUserController = async (req: Request, res: Response) => {
     const userData: IUserResponse = req.body;
@@ -13,14 +12,10 @@ const createUserController = async (req: Request, res: Response) => {
     return res.status(201).json(newUser)
 }
 
-const listUsersController = async (req: Request, res: Response) => {
-    const listUsers = await listUsersService()
-    return res.status(200).json(listUsers)
-}
-
-const listDeletedUsersController = async (req: Request, res: Response) => {
-    const listDeletedUsers = await listDeletedUsersService()
-    return res.status(200).json(listDeletedUsers)
+const listUserController = async (req: Request, res: Response) => {
+    const userId: string = req.body.user.id
+    const userValidated = await listUserService(userId)
+    return res.status(200).json(userValidated)
 }
 
 const retrieveUserController = async (req: Request, res: Response) => {
@@ -42,4 +37,5 @@ const deleteUserController = async (req: Request, res: Response) => {
     return res.status(204).json({})
 }
 
-export { createUserController, listUsersController, listDeletedUsersController, retrieveUserController, updateUserController, deleteUserController };
+export { createUserController, listUserController, retrieveUserController, updateUserController, deleteUserController };
+
