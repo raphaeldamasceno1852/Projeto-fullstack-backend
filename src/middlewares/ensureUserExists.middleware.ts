@@ -6,11 +6,14 @@ import { AppError } from "../errors/appError";
 
 const userExistsMiddleware = async (req: Request, res: Response, next: NextFunction) => {
     const userRepository: Repository<User> = AppDataSource.getRepository(User)
-
+    console.log("findOneBy");
+    
     const user = await userRepository.findOneBy({
         email: req.body.email
     })
-
+    console.log(user)
+    console.log(req.body.email);
+    
     if (user) {
         throw new AppError("email already exists", 409)
     }

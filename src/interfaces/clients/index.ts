@@ -1,8 +1,8 @@
-export interface IClientRequest {
-    fullname: string
-    email: string
-    telefone: string
-}
+    export interface IClientRequest {
+        fullname: string
+        email: string
+        telefone: string
+    }
 
 export interface IClientResponse {
     id: string

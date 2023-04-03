@@ -3,12 +3,12 @@ import jwt from "jsonwebtoken";
 import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/user.entity";
 import { AppError } from "../../errors/appError";
-import { IUserLogin } from "../../interfaces/login";
+import { ITokenReturn, IUserLogin } from "../../interfaces/login";
 
 const loginService = async ({
     email,
     password,
-}: IUserLogin): Promise<string> => {
+}: IUserLogin): Promise<ITokenReturn> => {
     const userRepository = AppDataSource.getRepository(User);
 
     const user = await userRepository.findOneBy({
@@ -40,7 +40,7 @@ const loginService = async ({
         }
     );
 
-    return token;
+    return {token, user };
 };
 
 export default loginService;

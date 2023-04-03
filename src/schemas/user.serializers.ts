@@ -37,3 +37,5 @@ export const UserWithClientsSchema: SchemaOf<IUserWithClients> = yup.object().sh
     deletedAt: yup.date().nullable(true),
     clients: yup.array()
 })
+
+export const ListUserWithClientsSchema: SchemaOf<IUserWithClients[]> = yup.array(UserWithClientsSchema)
