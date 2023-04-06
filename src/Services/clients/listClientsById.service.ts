@@ -1,27 +1,26 @@
 import { Repository } from "typeorm"
 import { AppDataSource } from "../../data-source"
-import { User } from "../../entities/user.entity"
+import { Client } from "../../entities/client.entity"
 import { AppError } from "../../errors/appError"
-import { IUserWithClients } from "../../interfaces/users"
-import { UserWithClientsSchema } from "../../schemas/user.serializers"
+import { CreateClientSchema } from "../../schemas/client.schema"
 
-const retrieveClientsByIdService = async (userId: string): Promise<IUserWithClients> => {
-    const userRepository: Repository<User> = AppDataSource.getRepository(User)
+const retrieveClientsByIdService = async (clientId: string): Promise<any> => {
+    const clientRepository: Repository<Client> = AppDataSource.getRepository(Client)
 
-    const user: User | null = await userRepository.findOne({
+    const client: Client | null = await clientRepository.findOne({
         where: {
-            id: userId
+            id: clientId
         },
         relations: {
-            clients: true
+            user: true
         },
     })
 
-    if (!user) {
-        throw new AppError("User not found", 404)
+    if (!client) {
+        throw new AppError("client not found", 404)
     }
 
-    const retrieveUser = await UserWithClientsSchema.validate(user, {
+    const retrieveUser = await CreateClientSchema.validate(client, {
         stripUnknown: true
     })
 

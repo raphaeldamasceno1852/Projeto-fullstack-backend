@@ -1,18 +1,16 @@
 import { Router } from "express";
-import { createUserController, deleteUserController, listUserController, retrieveUserController, updateUserController } from "../controllers/user.controller";
+import { createUserController, deleteUserController, listUserController, updateUserController } from "../controllers/user.controller";
 import authMiddleware from "../middlewares/authMiddleware";
-import ensureIsAdminMiddleware from "../middlewares/ensureIsAdmin.middleware";
-import ensureIsAdminOrOwnerMiddleware from "../middlewares/ensureIsOwnerOrAdm.middleware";
 import userExistsMiddleware from "../middlewares/ensureUserExists.middleware";
 import validateDataMiddleware from "../middlewares/validateData.middleware";
+import verifyUserExitsMiddleware from "../middlewares/verifyUserExists";
 import { CreateUserSchema } from "../schemas/user.serializers";
 
 const usersRouter = Router();
 
 usersRouter.post("", userExistsMiddleware, validateDataMiddleware(CreateUserSchema), createUserController);
 usersRouter.get("/profile", authMiddleware, listUserController)
-usersRouter.get("/:user_id", ensureIsAdminMiddleware, authMiddleware, ensureIsAdminOrOwnerMiddleware, retrieveUserController)
-usersRouter.patch("/:user_id", ensureIsAdminMiddleware, authMiddleware, ensureIsAdminOrOwnerMiddleware, updateUserController)
-usersRouter.delete("/:user_id", authMiddleware, ensureIsAdminOrOwnerMiddleware, deleteUserController)
+usersRouter.patch("/:user_id", authMiddleware, verifyUserExitsMiddleware, updateUserController)
+usersRouter.delete("/:user_id", authMiddleware, deleteUserController)
 
 export default usersRouter;

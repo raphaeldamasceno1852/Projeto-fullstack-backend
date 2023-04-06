@@ -1,7 +1,6 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { Client } from "../../entities/client.entity";
-import { User } from "../../entities/user.entity";
 import { IClientResponse } from "../../interfaces/clients";
 import { ReturnClientSchema } from "../../schemas/client.schema";
 
