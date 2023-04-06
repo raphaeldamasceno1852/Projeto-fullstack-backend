@@ -4,20 +4,18 @@ import { AppDataSource } from "../data-source";
 import { User } from "../entities/user.entity";
 import { AppError } from "../errors/appError";
 
-const userExistsMiddleware = async (req: Request, res: Response, next: NextFunction) => {
+const verifyUserExitsMiddleware = async (req: Request, res: Response, next: NextFunction) => {
     const userRepository: Repository<User> = AppDataSource.getRepository(User)
-    console.log("findOneBy");
-    
+
     const user = await userRepository.findOneBy({
-        email: req.body.email
+        id: req.body.user.id
     })
     
-    
-    if (user) {
-        throw new AppError("email already exists", 409)
-    }
+        if (!user) {
+            throw new AppError("you don't have authorization", 403)
+        }
 
-    return next()
+        return next()
 }
 
-export default userExistsMiddleware
+export default verifyUserExitsMiddleware
