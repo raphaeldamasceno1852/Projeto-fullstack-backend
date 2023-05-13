@@ -7,7 +7,7 @@ import { ITokenReturn, IUserLogin } from "../../interfaces/login";
 
 const loginService = async ({
     email,
-    password,
+    userPassword,
 }: IUserLogin): Promise<ITokenReturn> => {
     const userRepository = AppDataSource.getRepository(User);
 
@@ -23,7 +23,7 @@ const loginService = async ({
         throw new AppError("User was deleted", 404);
     }
 
-    const passwordMatch = await compare(password, user.password);
+    const passwordMatch = await compare(userPassword, user.password);
 
     if (!passwordMatch) {
         throw new AppError("User or password invalid", 403);
@@ -39,8 +39,8 @@ const loginService = async ({
             expiresIn: "24h",
         }
     );
-
-    return {token, user };
+    const { password, ...restUser } = user;
+    return { token, restUser };
 };
 
 export default loginService;
